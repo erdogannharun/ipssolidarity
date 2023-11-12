@@ -1,0 +1,19 @@
+<div class="card mb-3">
+    <div class="row">
+        <div class="col-md-3">
+            <img src="/images/<%= imagePath %>" alt="" class="img-fluid p-2">
+        </div>
+        <div class="col-md-9">
+            <div class="card-body">
+                <h5 class="card-title">
+                    <a href="/blogs/<%= slug %>">
+                        <%= title %>
+                    </a>
+                </h5>
+                <p class="card-text">
+                    <%- description.substring(0,250) %>...
+                </p>
+            </div>
+        </div>
+    </div>
+</div>

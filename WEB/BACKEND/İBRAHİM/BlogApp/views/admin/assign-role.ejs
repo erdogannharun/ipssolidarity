@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('../partials/head.ejs') %>
+</head>
+
+<body>
+    <!-- navigation -->
+    <%- include("../partials/nav") %>
+
+        <div class="conatiner mt-3">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row justify-content-center">
+                        <div class="col-md-6">
+                            <h1 class="h3 mb-3">ROL ATA - <%= user.username %>
+                            </h1>
+                            <% if (typeof message!="undefined" && message ) { %>
+                                <div class="alert alert-danger" role="alert">
+                                    Kullanıcı rollerini boş bırakamazsınız. Her kullanıcı en az bir rol almalıdır.
+                                </div>
+                                <% } %>
+                                    <form method="post" action="/admin/users/assignrole">
+                                        <input type="hidden" value="<%= user.id %>" name="userid">
+                                        <div class="form-group row mb-4">
+                                            <label class="col-sm-2 col-form-label">Roller</label>
+                                            <div class="col-sm-10">
+                                                <div class="form-group row mb-4">
+                                                    <div class="col-sm-10">
+                                                        <% roles.forEach(role=> { %>
+                                                            <input type="checkbox" class="form-check-input"
+                                                                id="roles_<%= role.id %>" name="roles"
+                                                                value="<%= role.id %>" <%=userRoles.some(u=> u.id ==
+                                                            role.id) ? 'checked' : '' %>>
+                                                            <label class="form-check-label" for="roles<%= role.id %>">
+                                                                <%= role.name %>
+                                                            </label>
+                                                            <% }) %>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                        </div>
+
+                        <div class="row col-sm-3 offset-sm-5">
+                            <button type="submit" class="btn btn-primary">KAYDET</button>
+                        </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+        <script>
+            ClassicEditor
+                .create(document.querySelector('#editor'))
+                .catch(error => {
+                    console.error(error);
+                });
+        </script>
+
+</body>
+
+</html>

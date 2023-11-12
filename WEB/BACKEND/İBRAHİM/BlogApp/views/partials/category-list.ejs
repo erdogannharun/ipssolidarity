@@ -1,0 +1,7 @@
+<a href="/" class="list-group-item list-group-item-action <%= selectedId == null ? 'active' : '' %>">TÜM KATEGORİLER</a>
+<% categories.forEach(category=> { %>
+        <a href="/blogs/category/<%= category.slug %>" class="list-group-item list-group-item-action
+                 <%= selectedId == category.id ? 'active': '' %>">
+                <%= category.name %>
+        </a>
+        <% }) %>
