@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('../partials/head.ejs') %>
+</head>
+
+<body>
+    <!-- navigation -->
+    <%- include("../partials/nav") %>
+
+        <div class="conatiner mt-3">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row justify-content-center">
+                        <div class="col-md-6">
+                            <h1 class="h3 mb-3">
+                                <%= role.name %> Rolü Güncelle
+                            </h1>
+                            <form method="post" action="/admin/roles/edit">
+
+                                <input type="hidden" name="id" value="<%= role.id %>">
+
+                                <div class="form-group row mb-4">
+                                    <label class="col-sm-2 col-form-label">Rol Adı</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" id="name" name="name"
+                                            placeholder="Rol Adı..." value="<%= role.name %>">
+                                    </div>
+                                </div>
+
+                                <div class="row col-sm-3 offset-sm-5">
+                                    <button class="btn btn-primary">Güncelle</button>
+                                </div>
+                            </form>
+                            <h1 class="h5 mb-5 my-3">
+                                Bu role sahip <%= users.length %> adet kullanıcı bulunmaktadır
+                            </h1>
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">#</th>
+                                        <th scope="col">Kullanıcı Adı</th>
+                                        <th scope="col">Email</th>
+                                        <th scope="col"></th>
+                                        <th scope="col"></th>
+                                        <th scope="col"></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <% users.forEach(user=> { %>
+                                        <tr>
+                                            <th scope="row">
+                                                <%= user.id %>
+                                            </th>
+                                            <td>
+                                                <%= user.username %>
+                                            </td>
+                                            <td>
+                                                <%= user.email %>
+                                            </td>
+                                            <td>
+                                                <a href="/admin/roles/users/remove/<%= user.id %>/<%= role.id %>"
+                                                    class="btn btn-danger">Bu Rolden Al</a>
+                                            </td>
+                                        </tr>
+                                        <% }) %>
+
+                                </tbody>
+                            </table>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+</body>
+
+</html>

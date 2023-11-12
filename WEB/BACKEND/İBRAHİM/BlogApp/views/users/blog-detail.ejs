@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('../partials/head.ejs') %>
+</head>
+
+<body>
+    <!-- navigation -->
+    <%- include("../partials/nav") %>
+        <div class="conatiner mt-3">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <img src="/images/<%= blog.imagePath %>" alt="" class="img-fluid p-2">
+                        </div>
+                        <div class="col-md-8  p-5 pt-0">
+                            <h1 class="h3 mb-3">
+                                <%= blog.title %>
+                            </h1>
+                            <p>
+                                <%- blog.description %>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+</body>
+
+</html>

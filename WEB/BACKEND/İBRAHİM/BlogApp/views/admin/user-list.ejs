@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('../partials/head.ejs') %>
+</head>
+
+<body>
+    <%- include('../partials/nav') %>
+
+
+        <div class="conatiner mt-3">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row justify-content-center">
+                        <div class="col-md-6">
+
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">#</th>
+                                        <th scope="col">Kullanıcı Adı</th>
+                                        <th scope="col">Email</th>
+                                        <th scope="col">Sahip Olduğu Roller</th>
+                                        <th scope="col"></th>
+                                        <th scope="col"></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <% users.forEach(user=> { %>
+                                        <tr>
+                                            <th scope="row">
+                                                <%= user.id %>
+                                            </th>
+                                            <td>
+                                                <%= user.username %>
+                                            </td>
+                                            <td>
+                                                <%= user.email %>
+                                            </td>
+                                            <td>
+                                                <% user.roles.forEach(role=> { %>
+                                                    <%= role.name %>
+                                                        <% }) %>
+                                            </td>
+                                            <td>
+                                                <a href="/admin/users/assignrole/<%= user.id %>"
+                                                    class="btn btn-primary">ROL
+                                                    ATA</a>
+                                            </td>
+                                        </tr>
+                                        <% }) %>
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+</body>
+
+</html>

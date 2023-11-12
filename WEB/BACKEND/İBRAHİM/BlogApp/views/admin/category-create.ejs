@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('../partials/head.ejs') %>
+</head>
+
+<body>
+    <!-- navigation -->
+    <%- include("../partials/nav") %>
+
+        <div class="conatiner mt-3">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row justify-content-center">
+                        <div class="col-md-6">
+                            <h1 class="h3 mb-3">KATEGORİ OLUŞTUR</h1>
+                            <form method="post" action="/admin/categories/create">
+
+                                <div class=" form-group row mb-4">
+                                    <label class="col-sm-2 col-form-label">Kategori Adı</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" id="name" name="name"
+                                            placeholder="Kategori Adı...">
+                                    </div>
+                                </div>
+
+                                <div class="row col-sm-3 offset-sm-5">
+                                    <button class="btn btn-primary">KAYDET</button>
+                                </div>
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+</body>
+
+</html>

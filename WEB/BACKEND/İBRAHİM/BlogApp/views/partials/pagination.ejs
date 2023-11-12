@@ -1,0 +1,26 @@
+<% if (totalPages>= 0) { %>
+    <nav>
+        <ul class="pagination">
+            <% if (page>= 1) { %>
+                <li class="page-item">
+                    <a href="?page=<%= (page - 1) %>" class="page-link">Geri</a>
+                </li>
+                <% } %>
+
+                    <% for( let i=0; i < totalPages; i++ ) { %>
+                        <li class="page-item">
+                            <a href="?page=<%=i%>" class="page-link <%= parseInt(page) + 1 === i+1? 'active' : '' %>"
+                                %>>
+                                <%= i + 1 %>
+                            </a>
+                        </li>
+                        <% } %>
+                            <% if (blogCount> ((parseInt(page)+1)*5)) { %>
+                                <li class="page-item">
+                                    <a href="?page=<%= (parseInt(page)+1) %>" class="page-link">İleri</a>
+                                </li>
+                                <% } %>
+
+        </ul>
+    </nav>
+    <% } %>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('../partials/head.ejs') %>
+</head>
+
+<body>
+    <%- include('../partials/nav') %>
+
+
+        <div class="conatiner mt-3">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row justify-content-center">
+                        <div class="col-md-6">
+
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">#</th>
+                                        <th scope="col">Rol Adı</th>
+                                        <th scope="col">Role Sahip Kullanıcı Sayısı</th>
+                                        <th scope="col"></th>
+                                        <th scope="col"></th>
+                                        <th scope="col"></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <% roles.forEach(role=> { %>
+                                        <tr>
+                                            <th scope="row">
+                                                <%= role.id %>
+                                            </th>
+                                            <td>
+                                                <%= role.name %>
+                                            </td>
+                                            <td>
+                                                <%= role.userCount %>
+                                            </td>
+                                            <td>
+                                                <a href="/admin/roles/edit/<%= role.id %>"
+                                                    class="btn btn-primary">GÜNCELLE</a>
+                                            </td>
+                                            <td>
+                                                <a href="/admin/roles/remove/<%= role.id %>"
+                                                    class="btn btn-danger">SİL</a>
+                                            </td>
+                                        </tr>
+                                        <% }) %>
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+</body>
+
+</html>
