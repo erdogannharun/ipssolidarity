@@ -33,59 +33,64 @@
                                     <button class="btn btn-primary">Güncelle</button>
                                 </div>
                             </form>
-                            <h1 class="h5 mb-5">
-                                Bu kategoride <%= countBlog %> adet blog bulunmaktadır
-                            </h1>
-                            <table class="table">
-                                <thead>
-                                    <tr>
-                                        <th scope="col">#</th>
-                                        <th scope="col">Başlık</th>
-                                        <th scope="col">Açıklama</th>
-                                        <th scope="col">Kategori</th>
-                                        <th scope="col">Resim</th>
-                                        <th scope="col">Anasayfa</th>
-                                        <th scope="col">İŞLEMLER</th>
-                                        <th scope="col"></th>
-                                        <th scope="col"></th>
-                                        <th scope="col"></th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <% blogs.forEach(blog=> { %>
-                                        <tr>
-                                            <th scope="row">
-                                                <%= blog.id %>
-                                            </th>
-                                            <td>
-                                                <%= blog.title %>
-                                            </td>
-                                            <td>
-                                                <%- blog.description.substring(0, 50)%>...
-                                            </td>
-                                            <td>
-                                                <%= category.name %>
-                                            </td>
-                                            <td>
-                                                <img src="/images/<%= blog.imagePath %>" alt=""
-                                                    class="img-fluid w-50 h-50">
-                                            </td>
-                                            <td>
-                                                <%= blog.homepage ? "Evet" : "Hayır" %>
-                                            </td>
-                                            <td>
-                                                <a href="/admin/blogs/edit/<%= blog.id %>"
-                                                    class="btn btn-primary">GÜNCELLE</a>
-                                            </td>
-                                            <td>
-                                                <a href="/admin/blogs/remove/<%= blog.id %>"
-                                                    class="btn btn-danger">SİL</a>
-                                            </td>
-                                        </tr>
-                                        <% }) %>
+                            <% if (typeof message!="undefined" && message ) { %>
+                                <div class="alert alert-danger" role="alert">
+                                    <%- message %>
+                                </div>
+                                <% } %>
+                                    <h1 class="h5 mb-5">
+                                        Bu kategoride <%= countBlog %> adet blog bulunmaktadır
+                                    </h1>
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">#</th>
+                                                <th scope="col">Başlık</th>
+                                                <th scope="col">Açıklama</th>
+                                                <th scope="col">Kategori</th>
+                                                <th scope="col">Resim</th>
+                                                <th scope="col">Anasayfa</th>
+                                                <th scope="col">İŞLEMLER</th>
+                                                <th scope="col"></th>
+                                                <th scope="col"></th>
+                                                <th scope="col"></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <% blogs.forEach(blog=> { %>
+                                                <tr>
+                                                    <th scope="row">
+                                                        <%= blog.id %>
+                                                    </th>
+                                                    <td>
+                                                        <%= blog.title %>
+                                                    </td>
+                                                    <td>
+                                                        <%- blog.description.substring(0, 50)%>...
+                                                    </td>
+                                                    <td>
+                                                        <%= category.name %>
+                                                    </td>
+                                                    <td>
+                                                        <img src="/images/<%= blog.imagePath %>" alt=""
+                                                            class="img-fluid w-50 h-50">
+                                                    </td>
+                                                    <td>
+                                                        <%= blog.homepage ? "Evet" : "Hayır" %>
+                                                    </td>
+                                                    <td>
+                                                        <a href="/admin/blogs/edit/<%= blog.id %>"
+                                                            class="btn btn-primary">GÜNCELLE</a>
+                                                    </td>
+                                                    <td>
+                                                        <a href="/admin/blogs/remove/<%= blog.id %>"
+                                                            class="btn btn-danger">SİL</a>
+                                                    </td>
+                                                </tr>
+                                                <% }) %>
 
-                                </tbody>
-                            </table>
+                                        </tbody>
+                                    </table>
 
                         </div>
                     </div>

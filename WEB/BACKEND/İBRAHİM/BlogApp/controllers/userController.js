@@ -1,5 +1,11 @@
 const Blog = require("../models/blog");
 const Category = require("../models/category");
+const Role = require("../models/role");
+const User = require("../models/user");
+const fs = require("fs");
+const slugfield = require("../helpers/slugfield");
+const sequelize = require("../data/db");
+const { name } = require("ejs");
 
 module.exports.blogs_by_category = async (req, res) => {
   try {
@@ -68,7 +74,7 @@ module.exports.blog_list = async (req, res) => {
     });
     const category = await Category.findAll({ raw: true });
 
-    res.render("users/blogs", {
+    return res.render("users/blogs", {
       blogs: blogs,
       categories: category,
       title: "Bloglar",
@@ -95,7 +101,7 @@ module.exports.blog_list_by_homepage = async (req, res, next) => {
       offset: page * size,
     });
     const category = await Category.findAll({ raw: true });
-    res.render("users/", {
+    return res.render("users/", {
       blogs: blogs,
       categories: category,
       title: "ANASAYFA",

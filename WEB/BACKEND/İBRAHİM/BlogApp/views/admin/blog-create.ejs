@@ -65,6 +65,11 @@
                                 </div>
 
                             </form>
+                            <% if (typeof message!="undefined" && message ) { %>
+                                <div class="alert alert-danger" role="alert">
+                                    <%- message %>
+                                </div>
+                                <% } %>
                         </div>
                     </div>
                 </div>
