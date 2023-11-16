@@ -5,9 +5,19 @@ const Blog = sequelize.define("blog", {
   title: {
     type: DataTypes.STRING,
     allowNull: false,
+    validate: {
+      notEmpty: {
+        msg: "Başlık boş geçilemez.",
+      },
+    },
   },
   description: {
     type: DataTypes.TEXT,
+    validate: {
+      notEmpty: {
+        msg: "Açıklama boş geçilemez.",
+      },
+    },
   },
   imagePath: {
     type: DataTypes.STRING,

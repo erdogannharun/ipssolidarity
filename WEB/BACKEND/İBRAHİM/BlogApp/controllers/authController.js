@@ -7,7 +7,7 @@ const Role = require("../models/role");
 
 module.exports.get_register = async (req, res) => {
   try {
-    res.render("auth/register", {
+    return res.render("auth/register", {
       title: "Kullanıcı Kayıt Sayfası",
     });
   } catch (error) {
@@ -19,27 +19,35 @@ module.exports.post_register = async (req, res) => {
   try {
     const body = req.body;
 
-    await User.create({
+    var newUser = await User.create({
       username: body.username,
       email: body.email,
       password: body.password,
     });
+    let role = await Role.findByPk(2);
+    await newUser.addRoles(role);
     return res.redirect("/account/login");
   } catch (error) {
-    let message = "";
-    for (let e of error.errors) {
-      message += e.message + "</br>";
+    if (
+      error.name == "SequelizeValidationError" ||
+      error.name == "SequelizeUniqueConstraintError"
+    ) {
+      let message = "";
+      for (let e of error.errors) {
+        message += e.message + "</br>";
+      }
+      return res.render("auth/register", {
+        title: "Kullanıcı Kayıt Sayfası",
+        message: message,
+      });
     }
-    res.render("auth/register", {
-      title: "Kullanıcı Kayıt Sayfası",
-      message: message,
-    });
+    res.redirect("/error");
   }
 };
 
 module.exports.get_login = async (req, res) => {
   try {
-    res.render("auth/login", {
+    return res.render("auth/login", {
       title: "Kullanıcı Giriş Sayfası",
       returnUrl: req.query.returnUrl,
     });
@@ -87,17 +95,37 @@ module.exports.post_login = async (req, res) => {
       }
     }
   } catch (error) {
-    console.log(error);
+    if (
+      error.name == "SequelizeValidationError" ||
+      error.name == "SequelizeUniqueConstraintError"
+    ) {
+      let message = "";
+      for (let e of error.errors) {
+        message += e.message + "</br>";
+      }
+      return res.render("auth/login", {
+        title: "Kullanıcı Giriş Sayfası",
+        message: message,
+      });
+    }
+    res.redirect("/error");
   }
 };
 
 module.exports.get_resetpassword = async (req, res) => {
   try {
-    res.render("auth/reset-password", {
+    return res.render("auth/reset-password", {
       title: "Parola Yenileme Sayfası",
     });
   } catch (error) {
-    console.log(error);
+    let message = "";
+    for (let e of error.errors) {
+      message += e.message + "</br>";
+    }
+    return res.render("auth/register", {
+      title: "Parola Yenileme Sayfası",
+      message: message,
+    });
   }
 };
 module.exports.post_resetpassword = async (req, res) => {
@@ -120,14 +148,27 @@ module.exports.post_resetpassword = async (req, res) => {
           "'>tıklayın</a>. <p>Eğer bunu yapanın siz olmadığını düşünüyorsanız lütfen iletişime geçin.</p></div>",
       });
     }
-    res.render("auth/reset-password", {
-      title: "Kullanıcı Giriş Sayfası",
+    return res.render("auth/reset-password", {
+      title: "Şifre Yenileme",
       message:
         email +
         " mailine kayıtlı bir kullanıcı varsa şifre sıfırlama linki gönderilecektir.",
     });
   } catch (error) {
-    console.log(error);
+    if (
+      error.name == "SequelizeValidationError" ||
+      error.name == "SequelizeUniqueConstraintError"
+    ) {
+      let message = "";
+      for (let e of error.errors) {
+        message += e.message + "</br>";
+      }
+      return res.render("auth/reset-password", {
+        title: "Şifre Yenileme",
+        message: message,
+      });
+    }
+    res.redirect("/error");
   }
 };
 
@@ -186,13 +227,26 @@ module.exports.post_changepassword = async (req, res) => {
         });
       }
     }
-    res.render("auth/changepassword", {
+    return res.render("auth/changepassword", {
       message: "Kullanıcı bulunamadı.",
       title: "Şifreni Yenile",
       token: token,
     });
   } catch (error) {
-    console.log(error);
+    if (
+      error.name == "SequelizeValidationError" ||
+      error.name == "SequelizeUniqueConstraintError"
+    ) {
+      let message = "";
+      for (let e of error.errors) {
+        message += e.message + "</br>";
+      }
+      return res.render("auth/changepassword", {
+        title: "Şifreni Yenile",
+        message: message,
+      });
+    }
+    res.redirect("/error");
   }
 };
 

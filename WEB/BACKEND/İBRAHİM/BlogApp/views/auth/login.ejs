@@ -34,21 +34,20 @@
                                                     name="password">
                                             </div>
                                         </div>
-                                        <% if (typeof message !="undefined" ) { %>
-                                            <div class="alert alert-danger" role="alert">
-                                                <%= message %>
-                                            </div>
-                                            <% } %>
-
-                                                <div class="row col-sm-3 offset-sm-5 mb-3">
-                                                    <button class="btn btn-primary">GİRİŞ YAP</button>
-                                                </div>
-                                                <div class="row col-sm-3 offset-sm-5">
-                                                    <a href="/account/reset-password" class="btn btn-primary">Şifremi
-                                                        Unuttum</a>
-                                                </div>
+                                        <div class="row col-sm-3 offset-sm-5 mb-3">
+                                            <button class="btn btn-primary">GİRİŞ YAP</button>
+                                        </div>
+                                        <div class="row col-sm-3 offset-sm-5">
+                                            <a href="/account/reset-password" class="btn btn-primary">Şifremi
+                                                Unuttum</a>
+                                        </div>
 
                             </form>
+                            <% if (typeof message !="undefined" ) { %>
+                                <div class="alert alert-danger" role="alert">
+                                    <%- message %>
+                                </div>
+                                <% } %>
                         </div>
                     </div>
                 </div>
