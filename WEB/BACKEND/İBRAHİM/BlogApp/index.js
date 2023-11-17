@@ -52,7 +52,7 @@ Role.belongsToMany(User, {
 User.belongsToMany(Role, { through: "userRoles" });
 
 (async () => {
-  await sequelize.sync({ force: true });
+  await sequelize.sync({ alter: true });
 })();
 
 app.set("view engine", "ejs");

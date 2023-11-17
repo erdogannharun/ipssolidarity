@@ -5,6 +5,11 @@ const Role = sequelize.define("role", {
   name: {
     type: DataTypes.STRING,
     allowNull: false,
+    validate: {
+      notEmpty: {
+        msg: "Rol adı boş geçilemez.",
+      },
+    },
   },
 });
 
