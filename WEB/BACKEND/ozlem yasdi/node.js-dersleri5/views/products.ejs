@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/bootstrap/dist/css/bootstrap.min.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="container mt-3"> 
+        <div class="row">
+            <div class="col-12">
+
+                <% urunler.forEach(urun => { %>
+
+                    <div class="card mb-3">
+                        <div class="row">
+                            <div class="col-4">
+                             <img src="/foto/<%= urun.imageurl %>" class="img-fluid"></İMG>
+                            </div>
+                            <div class="col-8">
+                                <div class="card-body">
+                                    <h5 class="card-title"><%= %>
+                                    <a href="/products/<%= urun.id %>"> 
+                                         <%= urun.name %>
+                                    </a>
+                                    </h5>
+                                    <p class="card-text"><%= urun.price %></p>
+                                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Optio, earum quibusdam. Consequatur cum unde vero laudantium ab 
+                                    reprehenderit quidem recusandae dolorem ad, itaque nisi corporis, ipsam explicabo veniam cumque facilis?
+                                    </p>
+                                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Optio, earum quibusdam. Consequatur cum unde vero laudantium ab 
+                                    reprehenderit quidem recusandae dolorem ad, itaque nisi corporis, ipsam explicabo veniam cumque facilis?
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                <% }) %>
+            
+            </div>
+        </div>
+    </div>
+
+
+
+</body>
+</html>
