@@ -1,1 +1,5 @@
+<<<<<<< Updated upstream
 Tasarımlarımlarım 
+=======
+Tasarımlarımlarım burada 
+>>>>>>> Stashed changes
